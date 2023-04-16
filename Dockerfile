@@ -1,6 +1,6 @@
-FROM eclipse-temurin:11-jdk-alpine
+FROM amazoncorretto:11
 
-RUN apk add --no-cache bash procps curl tar
+RUN yum install -y tar which gzip # TODO remove
 
 # common for all images
 ENV MAVEN_HOME /usr/share/maven
@@ -19,9 +19,14 @@ ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
 CMD ["mvn"]
 
 
-RUN apk update
+RUN yum update
 RUN apk upgrade
-WORKDIR /home/KarateApitestdemo2
-COPY . /home/karateapidemouser/KarateApitestdemo2
-RUN mvn -v
+RUN useradd  -ms /bin/bash karateuser
+WORKDIR /home/karateuser/KarateApitestdemo2
+RUN chown karateuser /home/karateuser/KarateApitestdemo2
+USER karateuser
+COPY . /home/karateuser/KarateApitestdemo2 
+RUN CACHEBUST=1
+RUN mvn -c
+RUN mvn clean test
 EXPOSE 9001
