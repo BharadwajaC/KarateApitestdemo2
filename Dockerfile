@@ -29,5 +29,4 @@ COPY . /home/karateuser/KarateApitestdemo2
 RUN CACHEBUST=1
 RUN mvn -v
 RUN mvn clean test
-RUN sleep 3000
 EXPOSE 9001
