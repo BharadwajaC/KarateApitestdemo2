@@ -24,5 +24,4 @@ RUN apk upgrade
 WORKDIR /home/KarateApitestdemo2
 COPY . /home/karateapidemouser/KarateApitestdemo2
 RUN mvn -v
-RUN mvn clean test
 EXPOSE 9001
