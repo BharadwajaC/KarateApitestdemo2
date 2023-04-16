@@ -1,17 +1,17 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM eclipse-temurin:11-jdk-alpine
 
 RUN apk add --no-cache bash procps curl tar
 
 # common for all images
 ENV MAVEN_HOME /usr/share/maven
 
-COPY --from=maven:3.9.0-eclipse-temurin-11 ${MAVEN_HOME} ${MAVEN_HOME}
-COPY --from=maven:3.9.0-eclipse-temurin-11 /usr/local/bin/mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
-COPY --from=maven:3.9.0-eclipse-temurin-11 /usr/share/maven/ref/settings-docker.xml /usr/share/maven/ref/settings-docker.xml
-ARG CACHEBUST=1
+COPY --from=maven:3.9.1-eclipse-temurin-11 ${MAVEN_HOME} ${MAVEN_HOME}
+COPY --from=maven:3.9.1-eclipse-temurin-11 /usr/local/bin/mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
+COPY --from=maven:3.9.1-eclipse-temurin-11 /usr/share/maven/ref/settings-docker.xml /usr/share/maven/ref/settings-docker.xml
+
 RUN ln -s ${MAVEN_HOME}/bin/mvn /usr/bin/mvn
 
-ARG MAVEN_VERSION=3.9.0
+ARG MAVEN_VERSION=3.9.1
 ARG USER_HOME_DIR="/root"
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 
@@ -21,10 +21,11 @@ CMD ["mvn"]
 
 RUN apk update
 RUN apk upgrade
-RUN apk add git
-ARG CACHEBUST=10
-RUN git clone https://github.com/BharadwajaC/KarateApitestdemo.git
-RUN chmod -R 777 KarateApitestdemo
-WORKDIR /KarateApitestdemo
+RUN useradd  -ms /bin/bash karateuser
+WORKDIR /home/karateuser/KarateApitestdemo2
+RUN chown karateuser /home/karateuser/KarateApitestdemo2
+USER karateuser
+COPY . /home/karateuser/KarateApitestdemo2
 RUN mvn -v
 RUN mvn clean test
+EXPOSE 9001

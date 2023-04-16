@@ -1,12 +1,17 @@
 pipeline {
     agent any
     stages{
+        stage('Git code pull'){
+            steps{
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/BharadwajaC/KarateApitestdemo2.git']])
+            }
+        }
         stage('Build Docker image'){
             steps{
                 script{
                     sh 'docker --version'
-                    sh 'docker build -t maven/base .'
-                    sh 'docker run -d -i -t maven/base /bin/sh'
+                    sh 'docker image prune'
+                    sh 'docker build -t mvnjd11/karateApitestdemo2 .'
                 }
             }
         }
