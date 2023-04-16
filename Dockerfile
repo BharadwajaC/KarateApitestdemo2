@@ -24,6 +24,6 @@ RUN chown karateuser /home/karateuser/KarateApitestdemo2
 USER karateuser
 COPY . /home/karateuser/KarateApitestdemo2 
 RUN CACHEBUST=1
-RUN mvn -c
+RUN mvn -v
 RUN mvn clean test
 EXPOSE 9001
