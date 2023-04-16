@@ -21,11 +21,11 @@ CMD ["mvn"]
 
 RUN apk update
 RUN apk upgrade
-RUN adduser -hs karateapiuser
-WORKDIR /home/karateapiuser/KarateApitestdemo2
-RUN chown karateapiuser /home/karateapiuser/KarateApitestdemo2
-USER karateuser
-COPY . /home/karateapiuser/KarateApitestdemo2
+RUN adduser -hs karateapidemouser
+WORKDIR /home/karateapidemouser/KarateApitestdemo2
+RUN chown karateapidemouser /home/karateapidemouser/KarateApitestdemo2
+USER karateapidemouser
+COPY . /home/karateapidemouser/KarateApitestdemo2
 RUN mvn -v
 RUN mvn clean test
 EXPOSE 9001
