@@ -11,7 +11,7 @@ pipeline {
                 script{
                     sh 'docker --version'
                     sh 'docker image prune'
-                    sh 'docker build -t mvnjd11/karateApitestdemo2 .'
+                    sh 'docker build -t mvnjd11/karate .'
                 }
             }
         }
