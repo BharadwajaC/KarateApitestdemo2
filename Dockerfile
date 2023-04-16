@@ -21,7 +21,7 @@ CMD ["mvn"]
 
 RUN apk update
 RUN apk upgrade
-RUN adduser -hs karateuser
+RUN adduser -hsD karateuser
 WORKDIR /home/karateuser/KarateApitestdemo2
 RUN chown karateuser /home/karateuser/KarateApitestdemo2
 USER karateuser
