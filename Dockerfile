@@ -25,6 +25,7 @@ RUN CACHEBUST=1
 RUN chown karateuser /home/karateuser/KarateApitestdemo2
 USER karateuser
 COPY . /home/karateuser/KarateApitestdemo2
+RUN CACHEBUST=1
 RUN mvn -v
 RUN CACHEBUST=1
 RUN mvn clean test
