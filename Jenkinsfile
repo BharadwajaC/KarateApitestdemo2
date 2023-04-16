@@ -13,7 +13,7 @@ pipeline {
                     sh 'docker image prune'
                     sh 'docker build -t mvnjdk11/karate .'
                     sh 'docker run -d --name karateapidemo2 -p 9001:9001 mvnjdk11/karate sleep 1000'
-                    sh 'docker copy karateapidemo2:/home/karateuser/KarateApitestdemo2/target/karate-reports/karate-summary.html /home/bharadwaja/karatelogs/karate-summary.html'
+                    sh 'docker cp karateapidemo2:/home/karateuser/KarateApitestdemo2/target/karate-reports/karate-summary.html /home/bharadwaja/karatelogs/karate-summary.html'
                 }
             }
         }
