@@ -22,11 +22,8 @@ RUN useradd  -ms /bin/bash karateuser
 RUN CACHEBUST=1
 WORKDIR /home/karateuser/KarateApitestdemo2
 RUN chown karateuser /home/karateuser/KarateApitestdemo2
-RUN CACHEBUST=1
 USER karateuser
-RUN CACHEBUST=1
 COPY . /home/karateuser/KarateApitestdemo2
-RUN CACHEBUST=1
 RUN mvn -v
 RUN mvn clean test
 EXPOSE 9001
