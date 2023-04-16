@@ -18,9 +18,6 @@ ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
 CMD ["mvn"]
 
-
-RUN yum update
-RUN apk upgrade
 RUN useradd  -ms /bin/bash karateuser
 WORKDIR /home/karateuser/KarateApitestdemo2
 RUN chown karateuser /home/karateuser/KarateApitestdemo2
