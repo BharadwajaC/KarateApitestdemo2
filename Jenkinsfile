@@ -13,7 +13,7 @@ pipeline {
                     sh 'docker image prune'
                     sh 'docker build -t mvnjdk11/karate .'
                     sh 'docker run -dit --name karateapidemo2 -p 9001:9001 mvnjdk11/karate'
-                    sh sleep 1000
+                    sh 'sleep 1000'
                 }
             }
         }
