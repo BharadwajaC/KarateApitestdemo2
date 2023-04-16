@@ -19,10 +19,14 @@ ENTRYPOINT ["/usr/local/bin/mvn-entrypoint.sh"]
 CMD ["mvn"]
 RUN yum install -y shadow-utils
 RUN useradd  -ms /bin/bash karateuser
+RUN CACHEBUST=1
 WORKDIR /home/karateuser/KarateApitestdemo2
 RUN chown karateuser /home/karateuser/KarateApitestdemo2
+RUN CACHEBUST=1
 USER karateuser
+RUN CACHEBUST=1
 COPY . /home/karateuser/KarateApitestdemo2
+RUN CACHEBUST=1
 RUN chmod -R 777 KarateApitestdemo2
 RUN CACHEBUST=1
 RUN mvn -v
