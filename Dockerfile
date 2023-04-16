@@ -25,5 +25,5 @@ USER karateuser
 COPY . /home/karateuser/KarateApitestdemo2 
 RUN CACHEBUST=1
 RUN mvn -v
-RUN mvn test
+RUN mvn clean test
 EXPOSE 9001
