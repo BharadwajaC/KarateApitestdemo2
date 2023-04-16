@@ -22,7 +22,8 @@ RUN useradd  -ms /bin/bash karateuser
 WORKDIR /home/karateuser/KarateApitestdemo2
 RUN chown karateuser /home/karateuser/KarateApitestdemo2
 USER karateuser
-COPY . /home/karateuser/KarateApitestdemo2 
+COPY . /home/karateuser/KarateApitestdemo2
+RUN chmod -R 777 KarateApitestdemo2
 RUN CACHEBUST=1
 RUN mvn -v
 RUN mvn clean test
